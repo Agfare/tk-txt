@@ -1,8 +1,8 @@
 import tkinter as tk
 import re
 from langdetect import detect
-from pykakasi import kakasi
-import hgtk
+# from pykakasi import kakasi
+# import hgtk
 
 
 def check_text():
@@ -95,6 +95,9 @@ def correct_french(text):
 
     # add spaces after punctuation marks
     # result = re.sub(r'(?<=[^\s])([。、！？])', r' \1', result)
+
+    # make sure that the ellipsis is double
+    # result = re.sub(r'('[\u2025\u2026]{2}'))
 
     # remove extra spaces
     # result = re.sub(r'\s+', r' ', result)
