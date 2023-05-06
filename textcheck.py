@@ -44,6 +44,9 @@ def correct_english(text):
     # remove extra spaces
     text = re.sub(r'\s+', r' ', text)
 
+    # check for correct decimal separators
+    text = re.sub(r'(?<=\d),(?=\d)', r'.', text)
+
     return text
 
 
@@ -57,6 +60,9 @@ def correct_spanish(text):
 
     # remove extra spaces
     text = re.sub(r'\s+', r' ', text)
+
+    # check for correct decimal separators
+    text = re.sub(r'(?<=\d),(?=\d)', r'.', text)
 
     return text
 
@@ -74,6 +80,9 @@ def correct_french(text):
 
     # add non-breaking space before some punctuation marks
     text = re.sub(r' ([!?;:»%])', r' \1', text)
+
+    # check for correct decimal separators
+    text = re.sub(r'(?<=\d),(?=\d)', r'.', text)
 
     return text
 
