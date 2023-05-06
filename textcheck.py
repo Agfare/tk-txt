@@ -142,10 +142,10 @@ root.geometry("500x400")
 root.title("Text Checker")
 
 # set app icon and taskbar icon
-icon_path = "ico.ico"
-icon_taskbar_path = "ico_taskbar.bmp"
-root.iconbitmap(default=icon_path)
-root.wm_iconbitmap(bitmap=icon_taskbar_path)
+# icon_path = "ico.ico"
+# icon_taskbar_path = "ico_taskbar.bmp"
+# root.iconbitmap(default=icon_path)
+# root.wm_iconbitmap(bitmap=icon_taskbar_path)
 
 input_field = tk.Text(root, height=10, width=60)
 input_field.pack(pady=10)
