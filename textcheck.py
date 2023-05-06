@@ -17,8 +17,8 @@ def check_text():
         text = correct_spanish(text)
     elif lang == "fr":
         text = correct_french(text)
-    elif lang == "ja":
-        text = correct_japanese(text)
+    # elif lang == "ja":
+        # text = correct_japanese(text)
     elif lang == "ko":
         text = correct_korean(text)
     elif lang == "tr":
@@ -78,7 +78,7 @@ def correct_french(text):
     return text
 
 
-def correct_japanese(text):
+# def correct_japanese(text):
     # convert hiragana to katakana
     # text = hgtk.text.text_to_kana(text)
 
@@ -94,12 +94,12 @@ def correct_japanese(text):
     # result = conv.result
 
     # add spaces after punctuation marks
-    result = re.sub(r'(?<=[^\s])([。、！？])', r' \1', result)
+    # result = re.sub(r'(?<=[^\s])([。、！？])', r' \1', result)
 
     # remove extra spaces
-    result = re.sub(r'\s+', r' ', result)
+    # result = re.sub(r'\s+', r' ', result)
 
-    return result
+    # return result
 def correct_korean(text):
 
     # add spaces after punctuation marks
