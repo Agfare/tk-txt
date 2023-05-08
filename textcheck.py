@@ -134,16 +134,23 @@ def correct_korean(text):
     text = re.sub(r'\s+', r' ', text)
 
     return text
-def correct_turkish(text):
+def correct_turkish(text, region='tr-TR'):
 
     # replace straight quotes with curly quotes
     text = re.sub(r'"([^"]+)"', r'“\1”', text)
     text = re.sub(r"'([^']+)'", r'‘\1’', text)
     # add spaces after punctuation marks
-    text = re.sub(r'(?<=[^\s])([.,:;?!])', r' \1', text)
+    text = re.sub(r'(?<=[^\s\d])([.,:;?!])(?=[^\s\d])', r' \1', text)
 
     # remove extra spaces
     text = re.sub(r'\s+', r' ', text)
+
+    # set the correct decimal separator based on the user's region or preference
+    locale.setlocale(locale.LC_ALL, region)
+    decimal_separator = locale.localeconv()['decimal_point']
+
+    # replace any incorrect decimal separators with the correct one
+    text = re.sub(r'(?<=\d)(?P<sep>[.,])(?=\d)', decimal_separator, text)
 
     # add non-breaking space after some words
     text = re.sub(r' (için|ile|ve|veya|ya da|gibi|göre|dolayı|ise|değil)', r' \1', text)
