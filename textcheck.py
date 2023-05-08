@@ -1,7 +1,10 @@
-import tkinter as tk
-import re
-from langdetect import detect
 import locale
+import re
+import tkinter as tk
+
+from langdetect import detect
+
+
 # from pykakasi import kakasi
 # import hgtk
 
@@ -19,7 +22,7 @@ def check_text():
     elif lang == "fr":
         text = correct_french(text)
     # elif lang == "ja":
-        # text = correct_japanese(text)
+    # text = correct_japanese(text)
     elif lang == "ko":
         text = correct_korean(text)
     elif lang == "tr":
@@ -104,32 +107,31 @@ def correct_french(text, region='fr-FR'):
 
 
 # def correct_japanese(text):
-    # convert hiragana to katakana
-    # text = hgtk.text.text_to_kana(text)
+# convert hiragana to katakana
+# text = hgtk.text.text_to_kana(text)
 
-    # convert katakana to romaji
-    # kakasi_instance = kakasi()
-    # kakasi_instance.setMode("H", "a")
-    # kakasi_instance.setMode("K", "a")
-    # kakasi_instance.setMode("J", "a")
-    # conv = kakasi_instance.get
-    # kakasi_instance.setMode("J", "a")
-    # kakasi_instance.setMode("s", True)
-    # conv.convert(text)
-    # result = conv.result
+# convert katakana to romaji
+# kakasi_instance = kakasi()
+# kakasi_instance.setMode("H", "a")
+# kakasi_instance.setMode("K", "a")
+# kakasi_instance.setMode("J", "a")
+# conv = kakasi_instance.get
+# kakasi_instance.setMode("J", "a")
+# kakasi_instance.setMode("s", True)
+# conv.convert(text)
+# result = conv.result
 
-    # add spaces after punctuation marks
-    # result = re.sub(r'(?<=[^\s])([。、！？])', r' \1', result)
+# add spaces after punctuation marks
+# result = re.sub(r'(?<=[^\s])([。、！？])', r' \1', result)
 
-    # make sure that the ellipsis is double
-    # result = re.sub(r'('[\u2025\u2026]{2}'))
+# make sure that the ellipsis is double
+# result = re.sub(r'('[\u2025\u2026]{2}'))
 
-    # remove extra spaces
-    # result = re.sub(r'\s+', r' ', result)
+# remove extra spaces
+# result = re.sub(r'\s+', r' ', result)
 
-    # return result
+# return result
 def correct_korean(text):
-
     # add spaces after punctuation marks
     text = re.sub(r'(?<=[^\s])([.?!])', r' \1', text)
 
@@ -137,8 +139,9 @@ def correct_korean(text):
     text = re.sub(r'\s+', r' ', text)
 
     return text
-def correct_turkish(text, region='tr-TR'):
 
+
+def correct_turkish(text, region='tr-TR'):
     # replace straight quotes with curly quotes
     text = re.sub(r'"([^"]+)"', r'“\1”', text)
     text = re.sub(r"'([^']+)'", r'‘\1’', text)
@@ -159,6 +162,7 @@ def correct_turkish(text, region='tr-TR'):
     text = re.sub(r' (için|ile|ve|veya|ya da|gibi|göre|dolayı|ise|değil)', r' \1', text)
 
     return text
+
 
 root = tk.Tk()
 root.geometry("500x400")
