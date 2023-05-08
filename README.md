@@ -2,7 +2,12 @@
 A simple tool that checks quotes, brackets, punctuation marks and decimals against the rules in a pre-defined list of languages.
 
 ## Supported languages
-English, Spanish, French, Japanese (limited support), Korean, and Turkish.
+- English (full support);
+- Spanish (full support);
+- French (full support);
+- Japanese (limited support);
+- Korean (limited support);
+- Turkish (full support).
 
 ## Features
 - Checks decimal separators
