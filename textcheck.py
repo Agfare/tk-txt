@@ -1,6 +1,7 @@
 import tkinter as tk
 import re
 from langdetect import detect
+import locale
 # from pykakasi import kakasi
 # import hgtk
 
@@ -33,47 +34,55 @@ def clear_all():
     output_field.delete("1.0", "end")  # clear the output field
 
 
-def correct_english(text):
+def correct_english(text, region='en_US'):
     # replace straight quotes with curly quotes
     text = re.sub(r'"([^"]+)"', r'“\1”', text)
     text = re.sub(r"'([^']+)'", r'‘\1’', text)
 
     # add spaces after punctuation marks
-    text = re.sub(r'(?<=[^\s])([.,:;?!])', r' \1', text)
+    text = re.sub(r'(?<=[^\s\d])([.,:;?!])(?=[^\s\d])', r' \1', text)
 
     # remove extra spaces
     text = re.sub(r'\s+', r' ', text)
 
-    # check for correct decimal separators
-    text = re.sub(r'(?<=\d),(?=\d)', r'.', text)
+    # set the correct decimal separator based on the user's region or preference
+    locale.setlocale(locale.LC_ALL, region)
+    decimal_separator = locale.localeconv()['decimal_point']
+
+    # replace any incorrect decimal separators with the correct one
+    text = re.sub(r'(?<=\d)(?P<sep>[.,])(?=\d)', decimal_separator, text)
 
     return text
 
 
-def correct_spanish(text):
+def correct_spanish(text, region='es_ES'):
     # replace straight quotes with curly quotes
     text = re.sub(r'"([^"]+)"', r'“\1”', text)
     text = re.sub(r"'([^']+)'", r'‘\1’', text)
 
     # add spaces after punctuation marks
-    text = re.sub(r'(?<=[^\s])([.,:;?!¿¡])', r' \1', text)
+    text = re.sub(r'(?<=[^\s\d])([.,:;?!])(?=[^\s\d])', r' \1', text)
 
     # remove extra spaces
     text = re.sub(r'\s+', r' ', text)
 
-    # check for correct decimal separators
-    text = re.sub(r'(?<=\d),(?=\d)', r'.', text)
+    # set the correct decimal separator based on the user's region or preference
+    locale.setlocale(locale.LC_ALL, region)
+    decimal_separator = locale.localeconv()['decimal_point']
+
+    # replace any incorrect decimal separators with the correct one
+    text = re.sub(r'(?<=\d)(?P<sep>[.,])(?=\d)', decimal_separator, text)
 
     return text
 
 
-def correct_french(text):
+def correct_french(text, region='fr-FR'):
     # replace straight quotes with curly quotes
     text = re.sub(r'"([^"]+)"', r'« \1 »', text)
     text = re.sub(r"'([^']+)'", r'‘\1’', text)
 
     # add spaces after punctuation marks
-    text = re.sub(r'(?<=[^\s])([.,:;?!])', r' \1', text)
+    text = re.sub(r'(?<=[^\s\d])([.,:;?!])(?=[^\s\d])', r' \1', text)
 
     # remove extra spaces
     text = re.sub(r'\s+', r' ', text)
@@ -81,8 +90,12 @@ def correct_french(text):
     # add non-breaking space before some punctuation marks
     text = re.sub(r' ([!?;:»%])', r' \1', text)
 
-    # check for correct decimal separators
-    text = re.sub(r'(?<=\d),(?=\d)', r'.', text)
+    # set the correct decimal separator based on the user's region or preference
+    locale.setlocale(locale.LC_ALL, region)
+    decimal_separator = locale.localeconv()['decimal_point']
+
+    # replace any incorrect decimal separators with the correct one
+    text = re.sub(r'(?<=\d)(?P<sep>[.,])(?=\d)', decimal_separator, text)
 
     return text
 
