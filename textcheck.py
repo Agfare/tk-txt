@@ -39,8 +39,11 @@ def correct_english(text, region='en_US'):
     text = re.sub(r'"([^"]+)"', r'“\1”', text)
     text = re.sub(r"'([^']+)'", r'‘\1’', text)
 
-    # add spaces after punctuation marks
-    text = re.sub(r'(?<=[^\s\d])([.,:;?!])(?=[^\s\d])', r' \1', text)
+    # add spaces after punctuation marks (excluding decimal separators)
+    text = re.sub(r'(?<=[^\s\d])([.,:;?!])(?=[^\s\d])', r' \1 ', text)
+
+    # remove extra spaces before and after punctuation marks
+    text = re.sub(r'\s+([.,:;?!])\s+', r'\1 ', text)
 
     # remove extra spaces
     text = re.sub(r'\s+', r' ', text)
